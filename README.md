@@ -39,3 +39,10 @@ dist/assets/index-DaWpJUK9.js                      174.57 kB │ gzip: 55.57 kB
 
 With some exceptions, all the duplicated modules have the same file size, which
 suggests that they are identical.
+
+# How to reproduce
+
+- Clone this repository
+- Run `pnpm install`
+- Run `pnpm run build`
+- Check the generated modules in `dist/assets`
