@@ -46,3 +46,13 @@ suggests that they are identical.
 - Run `pnpm install`
 - Run `pnpm run build`
 - Check the generated modules in `dist/assets`
+
+# How to compare the generated modules
+
+- Switch to branch `with-manual-chunks`
+- Run `pnpm install`
+- Run `pnpm run build`
+- Run `git diff --no-index dist/assets/pixi.js*`
+
+Notice how the main differences are some vite-specific code and some variables
+having a `2` suffix or `$1` suffix.
