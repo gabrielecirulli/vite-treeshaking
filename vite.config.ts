@@ -7,5 +7,13 @@ export default defineConfig({
   },
   worker: {
     format: 'es',
+    rollupOptions: {
+      treeshake: 'smallest',
+    },
+  },
+  build: {
+    rollupOptions: {
+      treeshake: 'smallest',
+    },
   },
 });
