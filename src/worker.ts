@@ -1,16 +1,14 @@
-import { Application } from 'pixi.js';
+import { Application, DOMAdapter, WebWorkerAdapter } from 'pixi.js';
+import { Canvas } from './canvas';
+
+DOMAdapter.set(WebWorkerAdapter);
 
 console.log('This code runs inside a worker.');
 
 self.onmessage = (event) => {
   console.log('Message received from main thread', event.data);
 
-  const canvas = event.data.canvas;
-
-  const app = new Application();
-  app.init({
-    width: 400,
-    height: 400,
-    canvas,
-  });
+  if (event.data.canvas instanceof OffscreenCanvas) {
+    new Canvas(event.data.canvas, 400, 400);
+  }
 };

@@ -1,12 +1,28 @@
+import { Application } from 'pixi.js';
 import Worker from './worker.ts?worker';
+import { Canvas } from './canvas';
 
-const worker = new Worker();
+createWorkerCanvas();
+createMainThreadCanvas();
 
-const canvas = document.createElement('canvas');
-canvas.width = 400;
-canvas.height = 400;
-document.body.appendChild(canvas);
+function createWorkerCanvas() {
+  const worker = new Worker();
 
-const offscreen = canvas.transferControlToOffscreen();
+  const canvas = document.createElement('canvas');
+  canvas.width = 400;
+  canvas.height = 400;
+  document.body.appendChild(canvas);
 
-worker.postMessage({ canvas: offscreen }, [offscreen]);
+  const offscreen = canvas.transferControlToOffscreen();
+
+  worker.postMessage({ canvas: offscreen }, [offscreen]);
+}
+
+function createMainThreadCanvas() {
+  const canvas = document.createElement('canvas');
+  canvas.width = 400;
+  canvas.height = 400;
+  document.body.appendChild(canvas);
+
+  new Canvas(canvas, 400, 400);
+}
